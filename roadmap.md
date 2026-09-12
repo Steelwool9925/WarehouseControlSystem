@@ -19,7 +19,7 @@ for the full design.
 - [ ] Configure enums to serialize as strings, not ints
 - [ ] Enable CORS for the local frontend dev origin
 
-**Plan:** `FEATURE_PLAN_dispatch-and-simulation.md` (pending)
+**Plan:** [`FEATURE_PLAN_dispatch-and-simulation.md`](.claude/plans/FEATURE_PLAN_dispatch-and-simulation.md) (Tier 2 selected, approved)
 - [ ] `DispatchService.CreateOrder`: validates SKUs exist, explodes an order into one pick task per line item
 - [ ] `DispatchService.RunDispatchCycle`: greedily assigns pending tasks to the nearest idle robot (by Manhattan distance) with battery above a minimum threshold
 - [ ] `FleetSimulationService` (BackgroundService): ticks every second — reruns dispatch, steps busy robots one grid cell toward their target, completes tasks on arrival, sends low-battery robots home to charge, marks orders fulfilled once all their tasks complete
