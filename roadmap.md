@@ -36,7 +36,7 @@ for the full design.
 - [ ] Design tokens: dark control-room palette (slate background, amber/teal/red status colors), Space Grotesk for UI text, IBM Plex Mono for data/IDs
 - [ ] `api.js`: fetch wrapper for all backend endpoints
 
-**Plan:** `FEATURE_PLAN_frontend-components.md` (pending)
+**Plan:** [`FEATURE_PLAN_frontend-components.md`](.claude/plans/FEATURE_PLAN_frontend-components.md) (Tier 1 selected, approved)
 - [ ] `WarehouseGrid`: SVG floor view — grid lines, inventory racks, charging docks, robots as animated circles that transition position on each poll
 - [ ] `RobotFleet`: list view with status dot, battery bar per robot
 - [ ] `OrderQueue`: horizontally scrolling cards color-coded by status
