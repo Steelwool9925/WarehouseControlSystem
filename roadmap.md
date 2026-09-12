@@ -14,7 +14,7 @@ for the full design.
 - [ ] Domain model: `PickTask` (id, order id, sku, target location, status enum: Pending/Assigned/Completed, assigned robot id, timestamps)
 - [ ] Domain model: `Order` (id, customer reference, line item skus, status enum: Pending/InProgress/Fulfilled, timestamps)
 
-**Plan:** `FEATURE_PLAN_state-and-seeding.md` (pending)
+**Plan:** [`FEATURE_PLAN_state-and-seeding.md`](.claude/plans/FEATURE_PLAN_state-and-seeding.md) (Tier 2 selected, approved)
 - [ ] Thread-safe in-memory state (`ConcurrentDictionary`) for robots/inventory/orders/tasks, seeded with a sample fleet (4 robots) and inventory catalogue (8 SKUs on a grid)
 - [ ] Configure enums to serialize as strings, not ints
 - [ ] Enable CORS for the local frontend dev origin
