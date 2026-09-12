@@ -42,7 +42,7 @@ for the full design.
 - [ ] `OrderQueue`: horizontally scrolling cards color-coded by status
 - [ ] `KpiBar`: stat cells from `/api/kpis`
 
-**Plan:** `FEATURE_PLAN_app-shell-and-finish.md` (pending)
+**Plan:** [`FEATURE_PLAN_app-shell-and-finish.md`](.claude/plans/FEATURE_PLAN_app-shell-and-finish.md) (Tier 1 selected, approved)
 - [ ] `App.jsx`: polls robots/orders/kpis every ~1.5s, inventory once on load, shows a connection-status badge if the API is unreachable, includes a "place order" form (SKU chip picker + optional reference field)
 - [ ] Responsive layout: grid view + fleet/KPIs sidebar + order queue strip below
 
