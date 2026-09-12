@@ -31,7 +31,7 @@ for the full design.
 
 ## Frontend (React + Vite)
 
-**Plan:** `FEATURE_PLAN_frontend-scaffold.md` (pending)
+**Plan:** [`FEATURE_PLAN_frontend-scaffold.md`](.claude/plans/FEATURE_PLAN_frontend-scaffold.md) (Tier 1 selected, approved)
 - [ ] Scaffold with Vite, plain CSS (no UI framework)
 - [ ] Design tokens: dark control-room palette (slate background, amber/teal/red status colors), Space Grotesk for UI text, IBM Plex Mono for data/IDs
 - [ ] `api.js`: fetch wrapper for all backend endpoints
