@@ -2,3 +2,11 @@
 .claude/maps/
 .claude/plans/
 .claude/reports/
+
+# .NET build output (added early — the first backend plan already produces these)
+backend/**/bin/
+backend/**/obj/
+backend/**/TestResults/
+
+# append-only dev changelog (cleanup-crew) — local record, not part of the commit
+changes.md
