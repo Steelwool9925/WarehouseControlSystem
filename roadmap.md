@@ -25,9 +25,9 @@ for the full design.
 - [x] `FleetSimulationService` (BackgroundService): ticks every second — reruns dispatch, steps busy robots one grid cell toward their target, completes tasks on arrival, sends low-battery robots home to charge, marks orders fulfilled once all their tasks complete
 - [x] `WarehouseControl.Tests` (xUnit): unit tests for `DispatchService` and simulation tick behavior (GridPosition tests land earlier, in the domain-models plan)
 
-**Plan:** [`FEATURE_PLAN_rest-endpoints.md`](.claude/plans/FEATURE_PLAN_rest-endpoints.md) (Tier 2 selected, approved)
-- [ ] REST endpoints: `GET /api/robots`, `GET /api/inventory`, `GET/POST /api/orders`, `GET /api/orders/{id}`, `GET /api/tasks`, `POST /api/dispatch/run`, `GET /api/kpis` (active/idle/charging robots, order counts by status, average pick time)
-- [ ] Add a `.http` file with example requests for manual testing
+**Plan:** `FEATURE_PLAN_rest-endpoints.md` (Tier 2, built & merged — plan pruned; see `.claude/reports/TEST_REPORT_rest-endpoints.md`)
+- [x] REST endpoints: `GET /api/robots`, `GET /api/inventory`, `GET/POST /api/orders`, `GET /api/orders/{id}`, `GET /api/tasks`, `POST /api/dispatch/run`, `GET /api/kpis` (active/idle/charging robots, order counts by status, average pick time)
+- [x] Add a `.http` file with example requests for manual testing
 
 ## Frontend (React + Vite)
 
