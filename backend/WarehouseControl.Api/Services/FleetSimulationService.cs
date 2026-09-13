@@ -30,7 +30,7 @@ public sealed class FleetSimulationService(WarehouseState state, DispatchService
     /// </summary>
     public void Tick()
     {
-        var assigned = dispatchService.RunDispatchCycle();
+        dispatchService.RunDispatchCycle();
 
         foreach (var robot in state.Robots.Values)
         {
@@ -47,12 +47,6 @@ public sealed class FleetSimulationService(WarehouseState state, DispatchService
         }
 
         FulfillCompletedOrders();
-
-        // TEMPORARY: the only visibility into the simulation until the REST-endpoints plan adds
-        // /api/kpis and /api/tasks. Remove once that plan lands.
-        Console.WriteLine(
-            $"[tick] {DateTimeOffset.UtcNow:O} assigned={assigned} robots={state.Robots.Count} " +
-            $"tasks={state.Tasks.Count} orders={state.Orders.Count}");
     }
 
     private void StepTowardTask(Robot robot)

@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using WarehouseControl.Api.Endpoints;
 using WarehouseControl.Api.Services;
 using WarehouseControl.Api.State;
 
@@ -32,6 +33,13 @@ app.UseCors(FrontendDevCorsPolicy);
 app.Services.GetRequiredService<WarehouseState>().Seed();
 
 app.MapGet("/", () => "Hello World!");
+
+app.MapRobotEndpoints();
+app.MapInventoryEndpoints();
+app.MapOrderEndpoints();
+app.MapTaskEndpoints();
+app.MapDispatchEndpoints();
+app.MapKpiEndpoints();
 
 app.Run();
 
