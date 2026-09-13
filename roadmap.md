@@ -31,10 +31,10 @@ for the full design.
 
 ## Frontend (React + Vite)
 
-**Plan:** [`FEATURE_PLAN_frontend-scaffold.md`](.claude/plans/FEATURE_PLAN_frontend-scaffold.md) (Tier 1 selected, approved)
-- [ ] Scaffold with Vite, plain CSS (no UI framework)
-- [ ] Design tokens: dark control-room palette (slate background, amber/teal/red status colors), Space Grotesk for UI text, IBM Plex Mono for data/IDs
-- [ ] `api.js`: fetch wrapper for all backend endpoints
+**Plan:** `FEATURE_PLAN_frontend-scaffold.md` (Tier 1, built & merged — plan pruned; see `.claude/reports/KEVIN_REPORT_frontend-scaffold.md`)
+- [x] Scaffold with Vite, plain CSS (no UI framework)
+- [x] Design tokens: dark control-room palette (slate background, amber/teal/red status colors), Space Grotesk for UI text, IBM Plex Mono for data/IDs
+- [x] `api.js`: fetch wrapper for all backend endpoints
 
 **Plan:** [`FEATURE_PLAN_frontend-components.md`](.claude/plans/FEATURE_PLAN_frontend-components.md) (Tier 1 selected, approved)
 - [ ] `WarehouseGrid`: SVG floor view — grid lines, inventory racks, charging docks, robots as animated circles that transition position on each poll
