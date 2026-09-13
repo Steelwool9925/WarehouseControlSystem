@@ -36,11 +36,11 @@ for the full design.
 - [x] Design tokens: dark control-room palette (slate background, amber/teal/red status colors), Space Grotesk for UI text, IBM Plex Mono for data/IDs
 - [x] `api.js`: fetch wrapper for all backend endpoints
 
-**Plan:** [`FEATURE_PLAN_frontend-components.md`](.claude/plans/FEATURE_PLAN_frontend-components.md) (Tier 1 selected, approved)
-- [ ] `WarehouseGrid`: SVG floor view — grid lines, inventory racks, charging docks, robots as animated circles that transition position on each poll
-- [ ] `RobotFleet`: list view with status dot, battery bar per robot
-- [ ] `OrderQueue`: horizontally scrolling cards color-coded by status
-- [ ] `KpiBar`: stat cells from `/api/kpis`
+**Plan:** `FEATURE_PLAN_frontend-components.md` (Tier 1, built & merged — plan pruned; see `.claude/reports/KEVIN_REPORT_frontend-components.md`)
+- [x] `WarehouseGrid`: SVG floor view — grid lines, inventory racks, charging docks, robots as animated circles that transition position on each poll
+- [x] `RobotFleet`: list view with status dot, battery bar per robot
+- [x] `OrderQueue`: horizontally scrolling cards color-coded by status
+- [x] `KpiBar`: stat cells from `/api/kpis`
 
 **Plan:** [`FEATURE_PLAN_app-shell-and-finish.md`](.claude/plans/FEATURE_PLAN_app-shell-and-finish.md) (Tier 1 selected, approved)
 - [ ] `App.jsx`: polls robots/orders/kpis every ~1.5s, inventory once on load, shows a connection-status badge if the API is unreachable, includes a "place order" form (SKU chip picker + optional reference field)
