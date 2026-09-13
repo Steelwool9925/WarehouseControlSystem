@@ -19,11 +19,11 @@ for the full design.
 - [x] Configure enums to serialize as strings, not ints
 - [x] Enable CORS for the local frontend dev origin
 
-**Plan:** [`FEATURE_PLAN_dispatch-and-simulation.md`](.claude/plans/FEATURE_PLAN_dispatch-and-simulation.md) (Tier 2 selected, approved)
-- [ ] `DispatchService.CreateOrder`: validates SKUs exist, explodes an order into one pick task per line item
-- [ ] `DispatchService.RunDispatchCycle`: greedily assigns pending tasks to the nearest idle robot (by Manhattan distance) with battery above a minimum threshold
-- [ ] `FleetSimulationService` (BackgroundService): ticks every second — reruns dispatch, steps busy robots one grid cell toward their target, completes tasks on arrival, sends low-battery robots home to charge, marks orders fulfilled once all their tasks complete
-- [ ] `WarehouseControl.Tests` (xUnit): unit tests for `DispatchService` and simulation tick behavior (GridPosition tests land earlier, in the domain-models plan)
+**Plan:** `FEATURE_PLAN_dispatch-and-simulation.md` (Tier 2, built & merged — plan pruned; see `.claude/reports/TEST_REPORT_dispatch-and-simulation.md`)
+- [x] `DispatchService.CreateOrder`: validates SKUs exist, explodes an order into one pick task per line item
+- [x] `DispatchService.RunDispatchCycle`: greedily assigns pending tasks to the nearest idle robot (by Manhattan distance) with battery above a minimum threshold
+- [x] `FleetSimulationService` (BackgroundService): ticks every second — reruns dispatch, steps busy robots one grid cell toward their target, completes tasks on arrival, sends low-battery robots home to charge, marks orders fulfilled once all their tasks complete
+- [x] `WarehouseControl.Tests` (xUnit): unit tests for `DispatchService` and simulation tick behavior (GridPosition tests land earlier, in the domain-models plan)
 
 **Plan:** [`FEATURE_PLAN_rest-endpoints.md`](.claude/plans/FEATURE_PLAN_rest-endpoints.md) (Tier 2 selected, approved)
 - [ ] REST endpoints: `GET /api/robots`, `GET /api/inventory`, `GET/POST /api/orders`, `GET /api/orders/{id}`, `GET /api/tasks`, `POST /api/dispatch/run`, `GET /api/kpis` (active/idle/charging robots, order counts by status, average pick time)
