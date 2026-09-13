@@ -6,13 +6,13 @@ for the full design.
 
 ## Backend (ASP.NET Core minimal API, .NET 10, no external NuGet deps)
 
-**Plan:** [`FEATURE_PLAN_domain-models.md`](.claude/plans/FEATURE_PLAN_domain-models.md) (Tier 2 selected, approved)
-- [ ] Scaffold a minimal API project: `WarehouseControl.Api`
-- [ ] Domain model: `GridPosition` (record struct, Manhattan distance + step-toward helpers)
-- [ ] Domain model: `Robot` (id, name, home station, position, status enum: Idle/MovingToPick/ReturningToStation/Charging, battery %, current task id)
-- [ ] Domain model: `InventoryLocation` (sku, description, grid position, quantity)
-- [ ] Domain model: `PickTask` (id, order id, sku, target location, status enum: Pending/Assigned/Completed, assigned robot id, timestamps)
-- [ ] Domain model: `Order` (id, customer reference, line item skus, status enum: Pending/InProgress/Fulfilled, timestamps)
+**Plan:** `FEATURE_PLAN_domain-models.md` (Tier 2, built & merged — plan pruned by cleanup-crew; see `.claude/reports/TEST_REPORT_domain-models.md`)
+- [x] Scaffold a minimal API project: `WarehouseControl.Api`
+- [x] Domain model: `GridPosition` (record struct, Manhattan distance + step-toward helpers)
+- [x] Domain model: `Robot` (id, name, home station, position, status enum: Idle/MovingToPick/ReturningToStation/Charging, battery %, current task id)
+- [x] Domain model: `InventoryLocation` (sku, description, grid position, quantity)
+- [x] Domain model: `PickTask` (id, order id, sku, target location, status enum: Pending/Assigned/Completed, assigned robot id, timestamps)
+- [x] Domain model: `Order` (id, customer reference, line item skus, status enum: Pending/InProgress/Fulfilled, timestamps)
 
 **Plan:** [`FEATURE_PLAN_state-and-seeding.md`](.claude/plans/FEATURE_PLAN_state-and-seeding.md) (Tier 2 selected, approved)
 - [ ] Thread-safe in-memory state (`ConcurrentDictionary`) for robots/inventory/orders/tasks, seeded with a sample fleet (4 robots) and inventory catalogue (8 SKUs on a grid)
