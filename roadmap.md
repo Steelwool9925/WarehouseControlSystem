@@ -14,10 +14,10 @@ for the full design.
 - [x] Domain model: `PickTask` (id, order id, sku, target location, status enum: Pending/Assigned/Completed, assigned robot id, timestamps)
 - [x] Domain model: `Order` (id, customer reference, line item skus, status enum: Pending/InProgress/Fulfilled, timestamps)
 
-**Plan:** [`FEATURE_PLAN_state-and-seeding.md`](.claude/plans/FEATURE_PLAN_state-and-seeding.md) (Tier 2 selected, approved)
-- [ ] Thread-safe in-memory state (`ConcurrentDictionary`) for robots/inventory/orders/tasks, seeded with a sample fleet (4 robots) and inventory catalogue (8 SKUs on a grid)
-- [ ] Configure enums to serialize as strings, not ints
-- [ ] Enable CORS for the local frontend dev origin
+**Plan:** `FEATURE_PLAN_state-and-seeding.md` (Tier 2, built & merged — plan pruned; see `.claude/reports/TEST_REPORT_state-and-seeding.md`)
+- [x] Thread-safe in-memory state (`ConcurrentDictionary`) for robots/inventory/orders/tasks, seeded with a sample fleet (4 robots) and inventory catalogue (8 SKUs on a grid)
+- [x] Configure enums to serialize as strings, not ints
+- [x] Enable CORS for the local frontend dev origin
 
 **Plan:** [`FEATURE_PLAN_dispatch-and-simulation.md`](.claude/plans/FEATURE_PLAN_dispatch-and-simulation.md) (Tier 2 selected, approved)
 - [ ] `DispatchService.CreateOrder`: validates SKUs exist, explodes an order into one pick task per line item
