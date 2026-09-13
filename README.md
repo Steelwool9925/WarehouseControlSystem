@@ -18,11 +18,15 @@ Built so far:
   and `Program.cs`.
 - Dispatch and simulation: `DispatchService` (order → pick tasks, nearest-idle-robot assignment)
   and `FleetSimulationService` (1s background tick: movement, battery, task/order completion) in
-  `backend/WarehouseControl.Api/Services/`. Run the API and watch the console for `[tick]` lines —
-  this is temporary visibility until the REST endpoints below land.
+  `backend/WarehouseControl.Api/Services/`.
+- REST API: `GET /api/robots`, `GET /api/inventory`, `GET/POST /api/orders`,
+  `GET /api/orders/{id}`, `GET /api/tasks`, `POST /api/dispatch/run`, `GET /api/kpis`, in
+  `backend/WarehouseControl.Api/Endpoints/`. See `backend/WarehouseControl.Api/WarehouseControl.Api.http`
+  for example requests.
 
-Everything else on the roadmap — REST endpoints and the whole frontend — is planned but not yet
-implemented. This section will be kept current as each roadmap item lands.
+The backend is now fully functional end-to-end. Everything else on the roadmap — the whole
+frontend — is planned but not yet implemented. This section will be kept current as each roadmap
+item lands.
 
 ## Running the backend
 

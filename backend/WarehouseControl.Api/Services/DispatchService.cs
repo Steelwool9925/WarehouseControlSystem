@@ -28,15 +28,23 @@ public sealed class DispatchService(WarehouseState state)
     /// Validates every SKU exists in inventory, then creates the order and one pending pick
     /// task per line item. No side effects on validation failure.
     /// </summary>
-    public CreateOrderResult CreateOrder(string? customerReference, IReadOnlyList<string> skus)
+    public CreateOrderResult CreateOrder(string? customerReference, IReadOnlyList<string>? skus)
     {
-        if (skus.Count == 0)
+        // skus arrives from JSON request binding, where a missing or explicit-null "skus"
+        // property deserializes to a null list, not an empty one — a client's malformed
+        // request must produce a clean 400 here, not an unhandled NullReferenceException.
+        if (skus is null || skus.Count == 0)
         {
             return CreateOrderResult.Failure("An order needs at least one SKU.");
         }
 
         foreach (var sku in skus)
         {
+            if (string.IsNullOrWhiteSpace(sku))
+            {
+                return CreateOrderResult.Failure("SKUs cannot be null or blank.");
+            }
+
             if (!state.Inventory.ContainsKey(sku))
             {
                 return CreateOrderResult.Failure($"Unknown SKU: '{sku}'.");
