@@ -27,9 +27,11 @@ Built so far:
 The backend is now fully functional end-to-end.
 
 Frontend so far: a Vite/React scaffold with the dark control-room design tokens
-(`frontend/src/tokens.css`) and the `api.js` fetch client every later component depends on.
-`App.jsx` is a temporary placeholder — the real fleet view, robot list, and order queue land in
-the next two roadmap plans. This section will be kept current as each one lands.
+(`frontend/src/tokens.css`) and the `api.js` fetch client. The four control-room components —
+`WarehouseGrid`, `RobotFleet`, `OrderQueue` (with the place-order form), and `KpiBar` — are built
+in `frontend/src/components/`, verified against mock data. `App.jsx` still wires them to a
+temporary mock-data harness, not live polling — that's the last roadmap plan. This section will
+be kept current as it lands.
 
 ## Running the backend
 
