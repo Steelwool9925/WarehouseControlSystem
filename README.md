@@ -10,10 +10,16 @@ and `roadmap.md` for the feature checklist and links to each implementation plan
 
 ## Status
 
-Built so far: the domain model (`GridPosition`, `Robot`, `InventoryLocation`, `PickTask`, `Order`)
-in `backend/WarehouseControl.Api/Domain/`. Everything else on the roadmap — in-memory state,
-dispatch/simulation services, REST endpoints, and the whole frontend — is planned but not yet
-implemented. This section will be kept current as each roadmap item lands.
+Built so far:
+- Domain model (`GridPosition`, `Robot`, `InventoryLocation`, `PickTask`, `Order`) in
+  `backend/WarehouseControl.Api/Domain/`.
+- In-memory state (`WarehouseState`, seeded with a 4-robot fleet and 8-SKU catalogue), enum
+  JSON serialization, and CORS for the frontend dev origin, in `backend/WarehouseControl.Api/State/`
+  and `Program.cs`.
+
+Everything else on the roadmap — dispatch/simulation services, REST endpoints, and the whole
+frontend — is planned but not yet implemented. This section will be kept current as each roadmap
+item lands.
 
 ## Running the backend
 
