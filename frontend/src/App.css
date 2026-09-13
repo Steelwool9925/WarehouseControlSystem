@@ -1,0 +1,80 @@
+.app-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  /* All rows size to their content — an explicit `1fr` middle row would stretch to fill
+     whatever's left of the viewport's 100vh minimum, leaving a large empty gap before the
+     order queue on any screen taller than the grid+sidebar row itself (found live: at a
+     typical desktop height this left several hundred px of dead space). */
+  grid-template-rows: auto auto auto;
+  grid-template-areas:
+    'header header'
+    'grid sidebar'
+    'queue queue';
+  gap: 1rem;
+  padding: 1rem;
+  /* Without this, Grid's default `align-content: normal` (which behaves as `stretch`) spreads
+     the viewport's leftover height across all three `auto` rows instead of leaving it after
+     the last one — the same distribution bug as the removed `1fr` row, one level up. */
+  align-content: start;
+}
+
+.app-header {
+  grid-area: header;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.app-header h1 {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.connection-badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+}
+
+.connection-badge.connected {
+  color: var(--color-teal);
+  border-color: var(--color-teal);
+}
+
+.connection-badge.disconnected {
+  color: var(--color-red);
+  border-color: var(--color-red);
+}
+
+.grid-area {
+  grid-area: grid;
+  min-width: 0;
+}
+
+.sidebar-area {
+  grid-area: sidebar;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.queue-area {
+  grid-area: queue;
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'header'
+      'grid'
+      'sidebar'
+      'queue';
+  }
+}

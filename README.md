@@ -1,42 +1,38 @@
 # Warehouse Control System
 
 A portfolio demo of a warehouse control system (WCS): a simulated robot fleet picks inventory
-against incoming orders on a grid floor, dispatched by a greedy nearest-robot algorithm. Backend
-is ASP.NET Core (.NET 10) with no persistence — everything runs in memory. Frontend is a React
-control-room UI (not built yet — see status below).
+against incoming orders on a grid floor, dispatched by a greedy nearest-robot algorithm and shown
+live in a React control-room UI. No database — everything runs in memory and resets on restart.
 
-See `docs/superpowers/specs/2026-09-12-warehouse-control-system-design.md` for the full design,
-and `roadmap.md` for the feature checklist and links to each implementation plan.
+See `docs/superpowers/specs/2026-09-12-warehouse-control-system-design.md` for the full design.
+`roadmap.md` tracks the feature checklist; every item on it is now built.
 
-## Status
+## Architecture
 
-Built so far:
-- Domain model (`GridPosition`, `Robot`, `InventoryLocation`, `PickTask`, `Order`) in
-  `backend/WarehouseControl.Api/Domain/`.
-- In-memory state (`WarehouseState`, seeded with a 4-robot fleet and 8-SKU catalogue), enum
-  JSON serialization, and CORS for the frontend dev origin, in `backend/WarehouseControl.Api/State/`
-  and `Program.cs`.
-- Dispatch and simulation: `DispatchService` (order → pick tasks, nearest-idle-robot assignment)
-  and `FleetSimulationService` (1s background tick: movement, battery, task/order completion) in
-  `backend/WarehouseControl.Api/Services/`.
-- REST API: `GET /api/robots`, `GET /api/inventory`, `GET/POST /api/orders`,
-  `GET /api/orders/{id}`, `GET /api/tasks`, `POST /api/dispatch/run`, `GET /api/kpis`, in
-  `backend/WarehouseControl.Api/Endpoints/`. See `backend/WarehouseControl.Api/WarehouseControl.Api.http`
-  for example requests.
+- **Backend** — `backend/WarehouseControl.Api` (ASP.NET Core minimal API, .NET 10, no external
+  NuGet dependencies in the API project itself). `WarehouseState` is an in-memory,
+  `ConcurrentDictionary`-backed singleton seeded with 4 robots and 8 SKUs on a 10×10 grid.
+  `DispatchService` turns orders into pick tasks and assigns them to the nearest eligible robot;
+  `FleetSimulationService` is a `BackgroundService` that ticks every second, moving robots,
+  draining/recharging battery, completing tasks, and fulfilling orders. A REST API
+  (`backend/WarehouseControl.Api/Endpoints/`) exposes all of it; see
+  `WarehouseControl.Api.http` for example requests. `backend/WarehouseControl.Tests` (xUnit)
+  covers the domain model and every service.
+- **Frontend** — `frontend/` (Vite + React, plain CSS). `App.jsx` polls the backend every 1.5s
+  and renders `WarehouseGrid` (an animated SVG floor view), `RobotFleet`, `OrderQueue` (with the
+  place-order form), and `KpiBar`. A connection-status badge in the header flips on poll failure
+  without wiping the last-known state. Design tokens (dark control-room palette, Space Grotesk +
+  IBM Plex Mono) live in `frontend/src/tokens.css`.
 
-The backend is now fully functional end-to-end.
+## Running it
 
-Frontend so far: a Vite/React scaffold with the dark control-room design tokens
-(`frontend/src/tokens.css`) and the `api.js` fetch client. The four control-room components —
-`WarehouseGrid`, `RobotFleet`, `OrderQueue` (with the place-order form), and `KpiBar` — are built
-in `frontend/src/components/`, verified against mock data. `App.jsx` still wires them to a
-temporary mock-data harness, not live polling — that's the last roadmap plan. This section will
-be kept current as it lands.
+Two terminals — the backend must be running for the frontend to show live data.
 
-## Running the backend
+### Backend
 
-Requires the .NET 10 SDK. If only .NET 8 or earlier shows up in `dotnet --list-sdks`, install it
-per-user (no admin rights needed):
+Requires the **.NET 10 SDK**. If `dotnet --list-sdks` only shows .NET 8 or earlier, install .NET
+10 per-user (no admin rights needed — the machine-wide installer can hang on a UAC prompt in a
+non-interactive shell):
 
 ```powershell
 Invoke-WebRequest -Uri "https://dot.net/v1/dotnet-install.ps1" -OutFile "$env:TEMP\dotnet-install.ps1"
@@ -53,11 +49,39 @@ dotnet test
 dotnet run --project WarehouseControl.Api
 ```
 
-## Running the frontend
+The API listens on `http://localhost:5299` by default (`dotnet run ... --urls "http://localhost:5299"`
+if you need to pin it explicitly).
+
+### Frontend
 
 ```powershell
 cd frontend
 npm install
 npm run dev
-# open http://localhost:5173
+```
+
+Open `http://localhost:5173`. The dev server is pinned to that port (`vite.config.js`) because
+the backend's CORS policy only allows that exact origin.
+
+### Using it
+
+Select one or more SKU chips in the order queue, optionally add a customer reference, and click
+"Place order." The nearest idle robot picks it up automatically within a second or two — watch it
+move across the floor view, complete the task, and return home (or head to charge, if its battery
+dropped below 20% along the way).
+
+## Project layout
+
+```
+backend/
+  WarehouseControl.Api/        # minimal API — Domain/, State/, Services/, Endpoints/
+  WarehouseControl.Tests/      # xUnit
+frontend/
+  src/
+    components/                # WarehouseGrid, RobotFleet, OrderQueue, KpiBar
+    lib/statusColor.js         # shared status → color mapping
+    api.js                     # backend fetch client
+    tokens.css                 # design tokens
+docs/superpowers/specs/        # design spec
+roadmap.md                     # feature checklist
 ```
