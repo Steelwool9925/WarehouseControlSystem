@@ -24,9 +24,12 @@ Built so far:
   `backend/WarehouseControl.Api/Endpoints/`. See `backend/WarehouseControl.Api/WarehouseControl.Api.http`
   for example requests.
 
-The backend is now fully functional end-to-end. Everything else on the roadmap — the whole
-frontend — is planned but not yet implemented. This section will be kept current as each roadmap
-item lands.
+The backend is now fully functional end-to-end.
+
+Frontend so far: a Vite/React scaffold with the dark control-room design tokens
+(`frontend/src/tokens.css`) and the `api.js` fetch client every later component depends on.
+`App.jsx` is a temporary placeholder — the real fleet view, robot list, and order queue land in
+the next two roadmap plans. This section will be kept current as each one lands.
 
 ## Running the backend
 
@@ -50,4 +53,9 @@ dotnet run --project WarehouseControl.Api
 
 ## Running the frontend
 
-Not built yet — instructions land here once the frontend-scaffold plan is implemented.
+```powershell
+cd frontend
+npm install
+npm run dev
+# open http://localhost:5173
+```
