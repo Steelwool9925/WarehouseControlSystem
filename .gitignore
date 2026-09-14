@@ -10,3 +10,7 @@ backend/**/TestResults/
 
 # append-only dev changelog (cleanup-crew) — local record, not part of the commit
 changes.md
+
+# frontend build output/deps (added early — the first frontend plan already produces these)
+frontend/node_modules/
+frontend/dist/
