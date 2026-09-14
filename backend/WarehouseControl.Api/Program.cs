@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using WarehouseControl.Api.Services;
 using WarehouseControl.Api.State;
 
 const string FrontendDevCorsPolicy = "FrontendDev";
@@ -6,6 +7,8 @@ const string FrontendDevCorsPolicy = "FrontendDev";
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<WarehouseState>();
+builder.Services.AddSingleton<DispatchService>();
+builder.Services.AddHostedService<FleetSimulationService>();
 
 builder.Services.ConfigureHttpJsonOptions(options =>
 {

@@ -16,10 +16,13 @@ Built so far:
 - In-memory state (`WarehouseState`, seeded with a 4-robot fleet and 8-SKU catalogue), enum
   JSON serialization, and CORS for the frontend dev origin, in `backend/WarehouseControl.Api/State/`
   and `Program.cs`.
+- Dispatch and simulation: `DispatchService` (order → pick tasks, nearest-idle-robot assignment)
+  and `FleetSimulationService` (1s background tick: movement, battery, task/order completion) in
+  `backend/WarehouseControl.Api/Services/`. Run the API and watch the console for `[tick]` lines —
+  this is temporary visibility until the REST endpoints below land.
 
-Everything else on the roadmap — dispatch/simulation services, REST endpoints, and the whole
-frontend — is planned but not yet implemented. This section will be kept current as each roadmap
-item lands.
+Everything else on the roadmap — REST endpoints and the whole frontend — is planned but not yet
+implemented. This section will be kept current as each roadmap item lands.
 
 ## Running the backend
 
