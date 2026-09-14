@@ -37,6 +37,30 @@ public class DispatchServiceTests
     }
 
     [Fact]
+    public void CreateOrder_RejectsNullSkuList_WithNoSideEffects()
+    {
+        // Reflects a request body that omits "skus" entirely, or sends it as JSON null —
+        // System.Text.Json binds that to a null list, not an empty one.
+        var (state, dispatch) = NewSeededSystem();
+
+        var result = dispatch.CreateOrder("customer-1", null);
+
+        Assert.False(result.IsSuccess);
+        Assert.Empty(state.Orders);
+        Assert.Empty(state.Tasks);
+    }
+
+    [Fact]
+    public void CreateOrder_RejectsNullOrBlankSkuElement()
+    {
+        var (_, dispatch) = NewSeededSystem();
+
+        var result = dispatch.CreateOrder("customer-1", ["SKU-001", null!, "SKU-002"]);
+
+        Assert.False(result.IsSuccess);
+    }
+
+    [Fact]
     public void CreateOrder_ValidOrder_CreatesOneTaskPerLineItem()
     {
         var (state, dispatch) = NewSeededSystem();

@@ -1,0 +1,41 @@
+@baseUrl = http://localhost:5299
+
+### List robots
+GET {{baseUrl}}/api/robots
+
+### List inventory
+GET {{baseUrl}}/api/inventory
+
+### List orders
+GET {{baseUrl}}/api/orders
+
+### Create an order
+POST {{baseUrl}}/api/orders
+Content-Type: application/json
+
+{
+  "customerReference": "manual-test-1",
+  "skus": ["SKU-001", "SKU-002"]
+}
+
+### Create an order with an unknown SKU (expect 400)
+POST {{baseUrl}}/api/orders
+Content-Type: application/json
+
+{
+  "customerReference": "manual-test-2",
+  "skus": ["NOT-A-REAL-SKU"]
+}
+
+### Get a single order by id (replace {{orderId}} with an id from "Create an order" above)
+@orderId = 00000000-0000-0000-0000-000000000000
+GET {{baseUrl}}/api/orders/{{orderId}}
+
+### List pick tasks
+GET {{baseUrl}}/api/tasks
+
+### Force an off-cycle dispatch pass
+POST {{baseUrl}}/api/dispatch/run
+
+### KPIs
+GET {{baseUrl}}/api/kpis
